@@ -29,6 +29,12 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - '/tools/*'
+  - 'tools/**'
+  - 'GoogleHacking/*'
+  - 'GoogleHacking/**'
+  - 'Windows/*'
+  - 'Windows/**'
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -44,17 +50,15 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace: ''
-  wrap: true
-  hljs: false
-prismjs:
-  enable: false
-  preprocess: true
-  line_number: true
-  tab_replace: ''
+  enable: false # 关闭原有的高亮代码
+
+# 添加prism_plugin配置项
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'tomorrow'
+  line_number: false    # default false
+  custom_css: 
+
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -105,3 +109,23 @@ deploy:
   type: git
   repo: https://github.com/JunDecNo/JunDecNo.github.io.git
   branch: master
+live2d:
+  enable: true  #是否显示看板娘
+  pluginModelPath: assets/
+  model:
+    use: live2d-widget-model-wanko  #模板目录，在node_modules里，就刚刚复制的那些，直接更换名字即可
+  display:
+    position: left   #宽高以及位置自己看着调
+    width: 200 
+    height: 300
+  mobile:
+    show: false  #是否在手机进行显示
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
