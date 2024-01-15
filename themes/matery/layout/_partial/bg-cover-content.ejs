@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                <% if (config.subtitle && config.subtitle.length > 0) { %> <%=
+                config.subtitle %> <% } else { %> subtitle <% } %>
+            </div>
+
+            <div class="description center-align">
+                <% if (theme.subtitle.enable) { %>
+                <span id="subtitle"></span>
+                <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.typed) %>"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: [
+                            <% theme.subtitle.sub.forEach(function(item){%>
+                                "<%= item %>",
+                            <% }) %>
+                        ],
+                        startDelay: <%= theme.subtitle.startDelay %>,
+                        typeSpeed: <%= theme.subtitle.typeSpeed %>,
+                        loop: <%= theme.subtitle.loop %>,
+                        backSpeed: <%= theme.subtitle.backSpeed %>,
+                        showCursor: <%= theme.subtitle.showCursor %>
+                    });
+                </script>
+                <% } else { %> <%= config.description %> <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% if (theme.banner.enable) { %>
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl ="https://s2.loli.net/2023/09/07/QLh7dUFEtYXejTR.jpg";
+    switch (new Date().getDay()) {
+        case 0:
+            bannerUrl = "https://s2.loli.net/2023/09/07/QLh7dUFEtYXejTR.jpg";
+            break;
+        case 1:
+            bannerUrl = "https://s2.loli.net/2023/09/07/s4ALqZW9IJyPUjr.jpg";
+            break;
+        case 2:
+            bannerUrl = "https://s2.loli.net/2023/09/07/D6WfTFEPH5tjN7S.jpg";
+            break;
+        case 3:
+            bannerUrl = "https://s2.loli.net/2023/09/07/riIYaHTjDPEAlKc.webp";
+            break;
+        case 4:
+            bannerUrl = "https://s2.loli.net/2023/09/07/1genM6aS2wE4kWB.webp";
+            break;
+        case 5:
+            bannerUrl = "https://s2.loli.net/2023/09/07/koZN5OMW7jUrh4D.webp";
+        default:
+            bannerUrl = "https://s2.loli.net/2023/09/07/ZoTwHABgtR6NmdL.jpg";
+            break;
+    }
+    $(".bg-cover").css("background-image", "url(" + bannerUrl + ")");
+</script>
+<% } else { %>
+<script>
+    $('.bg-cover').css('background-image', 'url(<%- theme.jsDelivr.url %><%- url_for("https://s1.ax1x.com/2023/09/04/pPDO6C6.jpg") %>)');
+</script>
+<% } %>
